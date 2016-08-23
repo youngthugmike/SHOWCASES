@@ -43,3 +43,38 @@ void Dequeue(x) { // delete from the queue
 
 
 //linked list implementation
+struct Node {
+    int data;
+    struct Node* next;
+}
+
+Node* front = new Node();
+Node* rear = new Node();
+
+void Enqueue(int x) {
+    Node* temp = new Node();
+    temp->data = x;
+    temp->next = NULL;
+
+    if (front == NULL && rear == NULL) { // when there is no element
+        front = rear = temp;
+        return;
+    }
+
+    rear -> next = temp;
+    rear = temp;
+}
+
+void Dequeue() {
+    Node* temp = front;
+    if (front == NULL) { // queue is empty
+        return;
+    }
+    if (front == rear) { // only one element
+        front = rear = NULL;
+    }
+    else {
+        front = front -> next;
+    }
+    delete temp; // delete the previous front
+}
